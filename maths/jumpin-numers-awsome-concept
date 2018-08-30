@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+void solve(int n){
+    queue<int>a;
+    cout<<0<<" ";
+
+    for(int i=1;i<=9;i++){
+        a.push(i);
+        while(!a.empty()){
+            int t=a.front();
+            a.pop();
+            if(t>n){
+                continue;
+            }
+            cout<<t<<" ";
+            int left=t%10;
+            if(left>0){a.push(t*10+left-1);};
+            if(left<9){a.push(t*10+left+1);};
+        }
+    }
+}
+int main() {
+	int t;
+	cin>>t;
+	while(t--){
+	    int n;
+	    cin>>n;
+	    solve(n);
+	    cout<<endl;
+	}
+	return 0;
+}

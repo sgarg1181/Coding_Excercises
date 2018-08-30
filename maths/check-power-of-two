@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+bool get(long long int n){
+    return n&&(!(n&(n-1)));
+}
+int main() {
+	int t;
+	cin>>t;
+	while(t--){
+	   long long int n;
+	    cin>>n;
+	    bool x=get(n);
+	    if(x){
+	        cout<<"YES"<<endl;
+	    }
+	    else{
+	        cout<<"NO"<<endl;
+	    }
+	}
+	return 0;
+}

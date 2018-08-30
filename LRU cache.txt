@@ -1,0 +1,39 @@
+ list<int> dq;
+ map<int,int> m;
+ int size;
+LRUCache::LRUCache(int N)
+{
+     size=N;
+     m.clear();
+     dq.clear();
+}
+/*Sets the key x with value y in the LRU cache */
+void LRUCache::set(int x, int y) 
+{
+    if(m.find(x)!=m.end()){
+        dq.remove(x);
+       
+    }
+    else{
+        if(dq.size()==size){
+            int x=dq.front();
+            dq.pop_front();
+            m.erase(x);
+        }
+        
+    }
+     dq.push_back(x);
+        m[x]=y;
+     
+}
+/*Returns the value of the key x if 
+present else returns -1 */
+int LRUCache::get(int x)
+{
+    if(m.find(x)!=m.end()){
+        dq.remove(x);
+        dq.push_back(x);
+        return m[x];
+    }
+    return -1;
+}

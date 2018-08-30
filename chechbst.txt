@@ -1,0 +1,46 @@
+int findmax(Node*root){
+    if(root==NULL){
+        return 0;
+    }
+    int res=root->data;
+    int lres=findmax(root->left);
+    int rres=findmax(root->right);
+     if (lres >res)
+      res = lres;
+    if (rres > res)
+      res = rres;
+    return res;
+}
+int findmin(Node*root){
+     if(root==NULL){
+        return 1001;
+    }
+    int res=root->data;
+    int lres=findmin(root->left);
+    int rres=findmin(root->right);
+     if (lres < res)
+      res = lres;
+    if (rres < res)
+      res = rres;
+    return res;
+}
+
+bool isBST(Node* root) {
+    if(root==NULL){
+        return true;
+    }
+    if(root->left!=NULL&&findmax(root->left)>root->data){
+        return false;
+    }
+     if(root->right!=NULL&&findmin(root->right)<root->data){
+        return false;
+    }
+    if(!isBST(root->left)||!isBST(root->right)){
+        return false;
+    }
+    return true;
+}
+
+
+
+2nd method global wala

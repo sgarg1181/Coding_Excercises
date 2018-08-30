@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+int min(int a,int b){
+    return a<b?a:b;
+}
+int tell(double h, double m){
+    if(h==12) h=0;
+    if(m==60) m=0;
+    int hra=0.5*(h*60+m);
+    int ma=6*m;
+    return floor(min(360-abs(hra-ma),abs(hra-ma)));
+}
+int main() {
+	int t;
+	cin>>t;
+	while(t--){
+	    double h,m;
+	    cin>>h>>m;
+	    cout<<tell(h,m)<<endl;
+	}
+	return 0;
+}

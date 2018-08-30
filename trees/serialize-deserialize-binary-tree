@@ -1,0 +1,48 @@
+
+/*Please note that it's Function problem i.e.
+you need to write your solution in the form of Function(s) only.
+Driver Code to call/invoke your function is mentioned above.*/
+
+/* A binary tree node has data, pointer to left child
+   and a pointer to right child  
+struct Node
+{
+    int data;
+    Node* left;
+    Node* right;
+}; */
+/*this  function serializes 
+the binary tree and stores 
+it in the vector A*/
+void serialize(Node *root,vector<int> &A)
+{
+    if(root==NULL){
+        A.push_back(-1);
+        return;
+    }
+   A.push_back(root->data);
+   serialize(root->left,A);
+   serialize(root->right,A);
+}
+ int i;
+Node *des(Node*root,vector<int> a){
+    if(i==a.size()){
+        return NULL;
+    }
+    if(a[i]==-1){
+        i++;
+        return NULL;
+    }
+    root=newNode(a[i]);
+    i++;
+    root->left=des(root->left,a);
+    root->right=des(root->right,a);
+    return root;
+}
+
+Node * deSerialize(vector<int> &A)
+{
+   i=0;
+   Node*root=NULL;
+   return des(root,A);
+}

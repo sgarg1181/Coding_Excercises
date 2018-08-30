@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+typedef long long int lint;
+lint dp(int m,int n,int x){
+    lint dt[n+1][x+1];
+    for(int i=0;i<n+1;i++){
+        for(int j=0;j<x+1;j++){
+            dt[i][j]=0;
+        }
+    }
+    for(int j=1;j<=m&&j<=x;j++){
+            dt[1][j]=1;
+        }
+    for(int i=2;i<=n;i++){
+        for(int j=1;j<=x;j++){
+            for(int k=1;k<j&&k<=m;k++){
+            dt[i][j]+=dt[i-1][j-k];
+            }
+        }
+    }
+    return dt[n][x];
+}
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--){
+	    int m,n,x;
+	    cin>>m>>n>>x;
+	    cout<<dp(m,n,x)<<endl;
+	}
+	return 0;
+}

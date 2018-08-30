@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+#include <string>
+using namespace std;
+void swap(char *x, char *y)
+{
+    char temp;
+    temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+void permute(string s, int l, int r,int* c){
+    if(l==r){
+        int x=stoi(s);
+        if(x%8==0){
+            *c=1;
+        }
+        return;
+    }
+    else{
+        int i;
+        for(i=l;i<=r;i++){
+            swap((s[l]),(s[i]));
+            permute(s,l+1,r,c);
+            swap((s[l]),(s[i]));
+        }
+    }
+}
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--){
+	 string n;
+	 cin>>n;
+	 int p=n.size()-1;
+	 int c=0;
+	 permute(n,0,p,&c);
+	 cout<<(c==1?"Yes":"No")<<endl;
+	}
+	return 0;
+}
